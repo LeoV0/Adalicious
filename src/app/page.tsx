@@ -10,7 +10,7 @@ export default function Home() {
     event.preventDefault();
     const prenom = event.target.prenom.value;
     sessionStorage.setItem("prenom", prenom);
-    router.push("/menu"); // Navigate to the menu page
+    router.push("/menu");
   };
 
   return (
@@ -35,6 +35,7 @@ export default function Home() {
               type="text"
               name="prenom"
               className="border-2 border-black rounded-lg p-1"
+              required
             />
             <button
               type="submit"
