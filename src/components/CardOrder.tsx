@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 export function CardOrder({
   id,
@@ -19,6 +20,8 @@ export function CardOrder({
   description: string;
   image: string;
 }) {
+  const router = useRouter();
+
   const handleOrder = async () => {
     const prenom = sessionStorage.getItem("prenom") ?? "anonyme";
 
@@ -29,7 +32,8 @@ export function CardOrder({
     });
 
     if (res.ok) {
-      alert(`Commande enregistrée pour ${plate} !`);
+      const commande = await res.json();
+      router.push(`/commande/${commande.id}`);
     } else {
       alert("Erreur lors de la commande");
     }
